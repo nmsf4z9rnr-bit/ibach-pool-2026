@@ -210,12 +210,98 @@
   .modal .err{ color: var(--coral-deep); font-size:14px; font-weight:600; margin: -6px 0 10px; display:none; }
 
   footer.note{ margin-top: 26px; font-size:14px; color: rgba(16,30,36,0.65); text-align:center; }
+
+  /* 2026 enhanced tournament features */
+  .toolbar{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+  .btn-small{padding:9px 12px;font-size:14px}
+  .btn-tv{background:#0A1B5E;color:#fff;border:2px solid #0A1B5E}
+  .btn-tv:hover{background:#1AA6AE}
+  .btn-undo:disabled{opacity:.45;cursor:not-allowed}
+  .medal-podium{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin:0 0 18px}
+  .medal-card{background:#fff;border:2px solid var(--line);border-radius:13px;padding:14px;text-align:center;box-shadow:0 2px 8px rgba(10,27,94,.08)}
+  .medal-card .medal{font-size:30px;line-height:1}
+  .medal-card .place{font-family:'JetBrains Mono',monospace;font-size:11px;text-transform:uppercase;letter-spacing:.7px;margin:7px 0 3px;opacity:.7}
+  .medal-card .name{font-family:'Anton',sans-serif;font-size:22px;color:var(--teal-deep)}
+  .medal-card.pending .name{font-family:'Inter',sans-serif;font-size:15px;opacity:.55}
+  .standings-wrap{margin-top:22px}
+  .standings-table{width:100%;border-collapse:separate;border-spacing:0;background:#fff;border:2px solid var(--line);border-radius:12px;overflow:hidden}
+  .standings-table th,.standings-table td{padding:11px 12px;text-align:left;border-bottom:1px solid var(--line)}
+  .standings-table th{font-family:'JetBrains Mono',monospace;font-size:12px;text-transform:uppercase;background:rgba(26,166,174,.10)}
+  .standings-table tr:last-child td{border-bottom:none}
+  .status-chip{display:inline-block;border-radius:20px;padding:4px 9px;font-size:12px;font-weight:800}
+  .status-alive{background:rgba(46,140,74,.15);color:#236D39}
+  .status-one{background:rgba(252,211,3,.24);color:#765F00}
+  .status-out{background:rgba(225,74,58,.13);color:#A83A20}
+  .status-champ{background:linear-gradient(90deg,#FCD303,#F5750E);color:#0A1B5E}
+  .qr-card{display:flex;align-items:center;gap:14px;background:#fff;border:2px solid var(--teal-deep);border-radius:13px;padding:12px 14px;margin-top:18px}
+  .qr-card canvas{width:116px!important;height:116px!important;flex-shrink:0}
+  .qr-copy{min-width:0}
+  .qr-copy strong{display:block;font-size:17px}
+  .qr-url{font-family:'JetBrains Mono',monospace;font-size:11px;word-break:break-all;opacity:.72;margin-top:4px}
+  .pool-ball-row{display:flex;gap:5px;align-items:center;flex-wrap:wrap;margin:0 0 14px}
+  .mini-ball{width:22px;height:22px;border-radius:50%;display:inline-flex;align-items:center;justify-content:center;color:#111;background:#fff;font:bold 9px 'JetBrains Mono';border:6px solid var(--c);box-shadow:inset -2px -2px 3px rgba(0,0,0,.2)}
+  .tv-badge{display:none;position:fixed;top:10px;right:10px;z-index:80;background:#0A1B5E;color:#fff;padding:7px 11px;border-radius:20px;font:bold 12px 'JetBrains Mono'}
+  body.tv-mode .tv-badge{display:block}
+  body.tv-mode .admin-area,body.tv-mode .share-live,body.tv-mode footer.note{display:none!important}
+  body.tv-mode .wrap{max-width:none;padding:12px 22px 35px}
+  body.tv-mode .logo-img{height:105px}
+  body.tv-mode .titleblock h1{font-size:52px}
+  body.tv-mode .panel{box-shadow:none}
+  .print-only{display:none}
+  @media(max-width:700px){
+    html{font-size:16px}
+    .wrap{padding:10px 8px 40px}
+    header{align-items:flex-start}
+    .header-left{gap:10px;flex-wrap:nowrap;align-items:center}
+    .logo-img{height:62px}
+    .titleblock h1{font-size:27px;line-height:1}
+    .titleblock .sub{font-size:14px}
+    .admin-area{width:100%;justify-content:flex-end}
+    button{padding:10px 12px;font-size:14px}
+    .tabs{position:sticky;top:0;z-index:20;background:#fff;padding-top:5px;flex-wrap:nowrap;overflow-x:auto;-webkit-overflow-scrolling:touch}
+    .tab{white-space:nowrap;padding:10px 12px;font-size:14px}
+    .panel{padding:12px;border-radius:10px}
+    .medal-podium{grid-template-columns:1fr;gap:8px}
+    .medal-card{display:grid;grid-template-columns:38px 72px 1fr;align-items:center;text-align:left;padding:10px}
+    .medal-card .medal{font-size:25px}
+    .medal-card .place{margin:0}
+    .medal-card .name{font-size:20px}
+    .dash-grid{grid-template-columns:1fr}
+    .match .row{padding:13px 12px;font-size:16px;min-height:48px}
+    .qr-card{align-items:flex-start}
+    .qr-card canvas{width:90px!important;height:90px!important}
+    .standings-table th:nth-child(2),.standings-table td:nth-child(2){display:none}
+    .bracket-scroll{margin:0 -12px;padding:0 12px 10px;scroll-snap-type:x proximity}
+    .col{min-width:88vw;scroll-snap-align:start}
+  }
+  @media print{
+    @page{size:landscape;margin:.3in}
+    body{background:#fff!important}
+    .admin-area,.tabs,.share-live,footer.note,.tv-badge,.no-print{display:none!important}
+    .wrap{max-width:none;padding:0}
+    header{margin-bottom:6px}
+    .logo-img{height:65px}
+    .titleblock h1{font-size:30px}
+    .panel{box-shadow:none;padding:8px;border:1px solid #bbb}
+    .bracket-scroll{overflow:visible}
+    .bracket-cols{transform:scale(.74);transform-origin:top left;gap:14px}
+    .col{min-width:180px}
+    .match .row{padding:7px 9px;font-size:12px}
+    .print-only{display:block}
+    .qr-card{position:fixed;right:.25in;bottom:.25in;width:250px;background:#fff}
+    .qr-card canvas{width:82px!important;height:82px!important}
+    .qr-copy strong{font-size:13px}.qr-url{font-size:8px}
+  }
+
 </style>
 </head>
 <body>
+<div class="tv-badge">📺 TV MODE · LIVE</div>
 <div class="wrap" id="app"></div>
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="https://cdn.jsdelivr.net/npm/qrcode@1.5.4/build/qrcode.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.3/dist/confetti.browser.min.js"></script>
 <script src="config.js"></script>
 <script>
 
@@ -308,6 +394,10 @@ let showPinModal = false;
 let pinError = '';
 let saveStatus = 'Loading live bracket…';
 let realtimeChannel = null;
+let undoStack = [];
+let tvMode = false;
+let tvRefreshTimer = null;
+let lastCelebratedChampion = sessionStorage.getItem('ibachCelebratedChampion') || '';
 
 const TOURNAMENT_ID = 'ibach-2026';
 const supabaseClient = window.supabase.createClient(
@@ -360,6 +450,108 @@ function needsReset(){
 }
 
 /* ---------- mutation ---------- */
+
+function getPlacements(){
+  const champion = getChampion() || '';
+  let runnerUp = '';
+  if(champion){
+    const finalId = state.results['GF2'] ? 'GF2' : 'GF1';
+    runnerUp = getLoser(finalId) || '';
+  }
+  return {
+    first: champion,
+    second: runnerUp,
+    third: getWinner('THIRD') || ''
+  };
+}
+
+function getPlayerLosses(){
+  const losses = {};
+  state.players.filter(Boolean).forEach(p=>losses[p]=0);
+  matchesConfig.forEach(m=>{
+    if(!state.results[m.id]) return;
+    const loser = getLoser(m.id);
+    if(loser && !isBye(loser) && m.id!=='THIRD') losses[loser]=(losses[loser]||0)+1;
+  });
+  return losses;
+}
+
+function getPlayerMatchCounts(){
+  const played = {};
+  state.players.filter(Boolean).forEach(p=>played[p]=0);
+  matchesConfig.forEach(m=>{
+    if(!state.results[m.id]) return;
+    const [p1,p2] = getPlayers(m.id);
+    [p1,p2].forEach(p=>{if(p && !isBye(p)) played[p]=(played[p]||0)+1;});
+  });
+  return played;
+}
+
+function pushUndo(label){
+  undoStack.push({state:JSON.parse(JSON.stringify(state)),label});
+  if(undoStack.length>30) undoStack.shift();
+}
+
+async function undoLastChange(){
+  if(!adminUnlocked || !undoStack.length) return;
+  const entry = undoStack.pop();
+  const current = JSON.parse(JSON.stringify(state));
+  state = entry.state;
+  render();
+  if(!(await saveLiveState())){
+    state = current;
+    undoStack.push(entry);
+    render();
+  }
+}
+
+function maybeCelebrateChampion(){
+  const champion = getChampion();
+  if(!champion || champion===lastCelebratedChampion || typeof confetti!=='function') return;
+  lastCelebratedChampion = champion;
+  sessionStorage.setItem('ibachCelebratedChampion', champion);
+  const end = Date.now()+2600;
+  (function frame(){
+    confetti({particleCount:5,angle:60,spread:65,origin:{x:0},startVelocity:45});
+    confetti({particleCount:5,angle:120,spread:65,origin:{x:1},startVelocity:45});
+    if(Date.now()<end) requestAnimationFrame(frame);
+  })();
+}
+
+function generateQrCode(){
+  const canvas=document.getElementById('liveQr');
+  if(canvas && window.QRCode){
+    QRCode.toCanvas(canvas, location.origin+location.pathname, {
+      width: 180, margin: 1,
+      color:{dark:'#0A1B5E',light:'#FFFFFF'}
+    }).catch(console.error);
+  }
+}
+
+function toggleTvMode(){
+  tvMode=!tvMode;
+  document.body.classList.toggle('tv-mode',tvMode);
+  if(tvMode){
+    if(document.documentElement.requestFullscreen) document.documentElement.requestFullscreen().catch(()=>{});
+    tvRefreshTimer=setInterval(()=>loadLiveState(),30000);
+  }else{
+    if(document.fullscreenElement && document.exitFullscreen) document.exitFullscreen().catch(()=>{});
+    clearInterval(tvRefreshTimer); tvRefreshTimer=null;
+  }
+  render();
+}
+
+function printableQrHtml(){
+  const url=location.origin+location.pathname;
+  return `<div class="qr-card">
+    <canvas id="liveQr" aria-label="QR code for live bracket"></canvas>
+    <div class="qr-copy"><strong>Scan for the live bracket</strong>
+      <div>Updates appear automatically on this same link.</div>
+      <div class="qr-url">${url}</div>
+    </div>
+  </div>`;
+}
+
 function clearDownstream(matchId){
   if(matchId==='GF1' && state.results['GF2']!==undefined) delete state.results['GF2'];
   matchesConfig.forEach(m=>{
@@ -448,6 +640,7 @@ async function initializeApp(){
 async function setWinner(matchId, slot){
   if(!adminUnlocked) return;
   const prior = JSON.parse(JSON.stringify(state));
+  pushUndo(`Result for ${matchId}`);
   clearDownstream(matchId);
   state.results[matchId] = slot;
   render();
@@ -463,6 +656,7 @@ async function resetTournament(){
     return;
   }
   const prior = JSON.parse(JSON.stringify(state));
+  pushUndo('Reset tournament');
   state.results = {};
   resetArmed = false;
   render();
@@ -532,38 +726,65 @@ function losersBracketHtml(){
 }
 
 function dashboardHtml(){
-  const champion = getChampion();
-  const thirdPlace = getWinner('THIRD');
-  let html = '';
+  const placements = getPlacements();
+  const champion = placements.first;
+  let html = `<div class="pool-ball-row" aria-hidden="true">
+    ${[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15].map((n,i)=>`<span class="mini-ball" style="--c:${['#F6D32D','#2878C8','#D94A42','#6F45A4','#F28B20','#2E8C4A','#7E2533','#111','#F6D32D','#2878C8','#D94A42','#6F45A4','#F28B20','#2E8C4A','#7E2533'][i]}">${n}</span>`).join('')}
+  </div>`;
+
   if(champion){
-    html += `<div class="champ-banner">${ballBadge(8)}<div><h2>${champion} takes the title!</h2><p>8-Ball Tournament Champion${thirdPlace ? ` · 🥉 3rd Place: ${thirdPlace}` : ''}</p></div></div>`;
+    html += `<div class="champ-banner">${ballBadge(8)}<div><h2>🏆 ${champion} is the 2026 Champion!</h2><p>Ibach Pool by the Sea 8-Ball Tournament</p></div></div>`;
   } else if(needsReset()){
     const [,p2] = getPlayers('GF1');
-    html += `<div class="reset-note">⚡ ${p2} came through the Second Chance bracket and won the Championship match — one more game to decide it all. Play the Bracket Reset below.</div>`;
+    html += `<div class="reset-note">⚡ ${p2} won the first Championship match from the Second Chance bracket. The Bracket Reset decides the champion.</div>`;
   }
+
+  html += `<div class="medal-podium">
+    ${[
+      ['🥇','1st Place',placements.first],
+      ['🥈','2nd Place',placements.second],
+      ['🥉','3rd Place',placements.third]
+    ].map(([medal,place,name])=>`<div class="medal-card ${name?'':'pending'}">
+      <div class="medal">${medal}</div><div class="place">${place}</div><div class="name">${name||'To be decided'}</div>
+    </div>`).join('')}
+  </div>`;
 
   const playable = matchesConfig.filter(m=>{
     if(state.results[m.id]) return false;
     if(m.id==='GF2' && !needsReset()) return false;
     const [p1,p2] = getPlayers(m.id);
-    if(!p1 || !p2) return false;
-    if(isBye(p1) || isBye(p2)) return false;
-    return true;
+    return p1 && p2 && !isBye(p1) && !isBye(p2);
   });
 
   html += `<h3 style="font-family:'Anton',sans-serif;color:var(--teal-deep);font-size:20px;margin:0 0 14px;">Up Next</h3>`;
-  if(playable.length===0 && !champion){
-    html += `<div class="empty-state">No matches ready yet — waiting on earlier results.</div>`;
-  } else if(playable.length===0 && champion){
-    html += `<div class="empty-state">Tournament complete 🎱</div>`;
-  } else {
-    html += `<div class="dash-grid">` + playable.map(m=>{
-      return `<div class="dash-card">
-        <div class="dc-head">${ballBadge(m.ball)}<div class="rlabel">${m.label}</div></div>
-        <div class="match" data-match="${m.id}">${matchCardHtml(m.id).replace('<div class="match" data-match="'+m.id+'">','').replace(/<\/div>$/,'')}</div>
-      </div>`;
-    }).join('') + `</div>`;
+  if(!playable.length){
+    html += `<div class="empty-state">${champion?'Tournament complete 🎱':'No matches ready yet — waiting on earlier results.'}</div>`;
+  }else{
+    html += `<div class="dash-grid">`+playable.map(m=>`<div class="dash-card">
+      <div class="dc-head">${ballBadge(m.ball)}<div class="rlabel">${m.label}</div></div>
+      ${matchCardHtml(m.id)}
+    </div>`).join('')+`</div>`;
   }
+
+  const losses=getPlayerLosses(), played=getPlayerMatchCounts();
+  const rows=state.players.filter(p=>p&&!isBye(p)).map((p,i)=>{
+    const loss=losses[p]||0;
+    let status='Undefeated', cls='status-alive';
+    if(p===champion){status='Champion';cls='status-champ'}
+    else if(loss>=2){status='Eliminated';cls='status-out'}
+    else if(loss===1){status='Second Chance';cls='status-one'}
+    return {p,loss,played:played[p]||0,status,cls,seed:i+1};
+  }).sort((a,b)=>{
+    const rank=x=>x.status==='Champion'?0:x.status==='Undefeated'?1:x.status==='Second Chance'?2:3;
+    return rank(a)-rank(b)||b.played-a.played||a.seed-b.seed;
+  });
+  html += `<div class="standings-wrap">
+    <h3 style="font-family:'Anton',sans-serif;color:var(--teal-deep);font-size:20px;margin:0 0 12px;">📊 Live Standings</h3>
+    <div style="overflow-x:auto"><table class="standings-table"><thead><tr><th>Player</th><th>Seed</th><th>Played</th><th>Losses</th><th>Status</th></tr></thead>
+    <tbody>${rows.map(r=>`<tr><td><strong>${r.p}</strong></td><td>${r.seed}</td><td>${r.played}</td><td>${r.loss}</td><td><span class="status-chip ${r.cls}">${r.status}</span></td></tr>`).join('')}</tbody></table></div>
+  </div>`;
+
+  html += printableQrHtml();
   return html;
 }
 
@@ -583,6 +804,7 @@ function playersTabHtml(){
 async function updatePlayer(i, value){
   if(!adminUnlocked) return;
   const prior = JSON.parse(JSON.stringify(state));
+  pushUndo(`Rename slot ${i+1}`);
   state.players[i] = value;
   render();
   if(!(await saveLiveState())) state = prior;
@@ -659,7 +881,7 @@ function render(){
   const showAdminEntry = true;
 
   const shareBox = `
-    <div style="background:rgba(252,211,3,0.20);border:2px solid var(--teal-deep);border-radius:10px;padding:12px 16px;margin-bottom:18px;display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;">
+    <div class="share-live" style="background:rgba(252,211,3,0.20);border:2px solid var(--teal-deep);border-radius:10px;padding:12px 16px;margin-bottom:18px;display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;">
       <div>
         <div style="font-weight:800;color:var(--teal-deep);font-size:15px;">🌐 One permanent live link</div>
         <div style="font-size:14px;color:var(--teal-deep);opacity:0.85;">Everyone sees results from the same shared bracket automatically.</div>
@@ -674,13 +896,18 @@ function render(){
         <img class="logo-img" src="${LOGO_DATA_URI}" alt="Ibach Pool by the Sea 2026 logo">
         <div class="titleblock">
           <h1>IBACH POOL BY THE SEA</h1>
-          <div class="sub">8-Ball Tournament — Double Elimination</div>
+          <div class="sub">2026 8-Ball Tournament — Double Elimination</div>
         </div>
       </div>
-      <div class="admin-area">
+      <div class="admin-area toolbar">
+        <button class="btn-tv btn-small" onclick="toggleTvMode()">📺 ${tvMode?'Exit TV':'TV Mode'}</button>
+        <button class="btn-ghost btn-small" onclick="window.print()">🖨️ Print</button>
         ${adminUnlocked
-          ? `<span class="pill">Admin unlocked</span><button class="btn-ghost" onclick="lockAdmin()">Lock</button>`
-          : `<button class="btn-ghost" onclick="openPinModal()">Admin</button>`}
+          ? `<span class="pill">Admin unlocked</span>
+             <button class="btn-ghost btn-small btn-undo" onclick="undoLastChange()" ${undoStack.length?'':'disabled'}>↶ Undo${undoStack.length?` (${undoStack.length})`:''}</button>
+             <button class="btn-danger btn-small" onclick="resetTournament()">${resetArmed?'Confirm reset?':'Reset'}</button>
+             <button class="btn-ghost btn-small" onclick="lockAdmin()">Lock</button>`
+          : `<button class="btn-ghost btn-small" onclick="openPinModal()">Admin</button>`}
       </div>
     </header>
 
@@ -703,6 +930,10 @@ function render(){
     <footer class="note">Live shared bracket · Spectators do not need an account · Only the administrator can change results.</footer>
     ${modalHtml()}
   `;
+  requestAnimationFrame(()=>{
+    generateQrCode();
+    maybeCelebrateChampion();
+  });
 }
 
 initializeApp();
