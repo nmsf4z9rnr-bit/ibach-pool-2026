@@ -234,7 +234,7 @@
   .status-out{background:rgba(225,74,58,.13);color:#A83A20}
   .status-champ{background:linear-gradient(90deg,#FCD303,#F5750E);color:#0A1B5E}
   .qr-card{display:flex;align-items:center;gap:14px;background:#fff;border:2px solid var(--teal-deep);border-radius:13px;padding:12px 14px;margin-top:18px}
-  .qr-card canvas{width:116px!important;height:116px!important;flex-shrink:0}
+  .qr-card .qr-img{width:116px;height:116px;flex-shrink:0;display:block}
   .qr-copy{min-width:0}
   .qr-copy strong{display:block;font-size:17px}
   .qr-url{font-family:'JetBrains Mono',monospace;font-size:11px;word-break:break-all;opacity:.72;margin-top:4px}
@@ -269,7 +269,7 @@
     .dash-grid{grid-template-columns:1fr}
     .match .row{padding:13px 12px;font-size:16px;min-height:48px}
     .qr-card{align-items:flex-start}
-    .qr-card canvas{width:90px!important;height:90px!important}
+    .qr-card .qr-img{width:90px;height:90px}
     .standings-table th:nth-child(2),.standings-table td:nth-child(2){display:none}
     .bracket-scroll{margin:0 -12px;padding:0 12px 10px;scroll-snap-type:x proximity}
     .col{min-width:88vw;scroll-snap-align:start}
@@ -289,7 +289,7 @@
     .match .row{padding:7px 9px;font-size:12px}
     .print-only{display:block}
     .qr-card{position:fixed;right:.25in;bottom:.25in;width:250px;background:#fff}
-    .qr-card canvas{width:82px!important;height:82px!important}
+    .qr-card .qr-img{width:82px;height:82px}
     .qr-copy strong{font-size:13px}.qr-url{font-size:8px}
   }
 
@@ -300,7 +300,6 @@
 <div class="wrap" id="app"></div>
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-<script src="https://cdn.jsdelivr.net/npm/qrcode@1.5.4/build/qrcode.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.3/dist/confetti.browser.min.js"></script>
 <script src="config.js"></script>
 <script>
@@ -518,15 +517,7 @@ function maybeCelebrateChampion(){
   })();
 }
 
-function generateQrCode(){
-  const canvas=document.getElementById('liveQr');
-  if(canvas && window.QRCode){
-    QRCode.toCanvas(canvas, location.origin+location.pathname, {
-      width: 180, margin: 1,
-      color:{dark:'#0A1B5E',light:'#FFFFFF'}
-    }).catch(console.error);
-  }
-}
+function generateQrCode(){ /* QR is embedded directly; no external library required. */ }
 
 function toggleTvMode(){
   tvMode=!tvMode;
@@ -542,9 +533,9 @@ function toggleTvMode(){
 }
 
 function printableQrHtml(){
-  const url=location.origin+location.pathname;
+  const url='https://nmsf4z9rnr-bit.github.io/ibach-pool-2026/';
   return `<div class="qr-card">
-    <canvas id="liveQr" aria-label="QR code for live bracket"></canvas>
+    <img class="qr-img" src="data:image/png;base64,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" alt="QR code for live bracket">
     <div class="qr-copy"><strong>Scan for the live bracket</strong>
       <div>Updates appear automatically on this same link.</div>
       <div class="qr-url">${url}</div>
